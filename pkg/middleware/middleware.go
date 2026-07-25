@@ -311,9 +311,19 @@ func (s *SouinBaseHandler) Store(
 	}
 
 	now := rq.Context().Value(context.Now).(time.Time)
-	date, _ := http.ParseTime(now.Format(http.TimeFormat))
 	customWriter.Header().Set(rfc.StoredTTLHeader, ma.String())
-	ma = ma - time.Since(date)
+	// erfi.io patch: account only for the response's own apparent age
+	// (RFC 7234 section 4.2.3, derived from its Date header) - NOT for the
+	// upstream response latency. The upstream code subtracted
+	// time.Since(request-arrival) (context.Now), so any origin slower than
+	// max-age was stored born-stale and could never be served as a fresh
+	// hit (observed: "Store the response ... with duration -669ms" for a
+	// 2s-slow origin with max-age=2).
+	if respDate, err := http.ParseTime(customWriter.Header().Get("Date")); err == nil {
+		if age := time.Since(respDate); age > 0 {
+			ma -= age
+		}
+	}
 
 	status := fmt.Sprintf("%s; fwd=uri-miss", rq.Context().Value(context.CacheName))
 	if (modeContext.Bypass_request || !requestCc.NoStore) &&
@@ -951,6 +961,17 @@ func (s *SouinBaseHandler) ServeHTTP(rw http.ResponseWriter, rq *http.Request, n
 
 						return err
 					}
+
+					// erfi.io patch: return after a successful revalidation.
+					// Revalidate has already fetched, stored and buffered the
+					// fresh response; falling through to the Upstream call below
+					// re-fetched from the origin a second time and re-Stored the
+					// (by then doubled) buffer, permanently corrupting the cache
+					// entry (observed: revalidated entries served with body x2
+					// and duplicated Date/Via headers).
+					_, _ = customWriter.Send()
+
+					return err
 				}
 
 			}
