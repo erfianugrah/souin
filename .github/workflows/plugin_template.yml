@@ -26,15 +26,15 @@ jobs:
           sudo echo "127.0.0.1 domain.com" | sudo tee -a /etc/hosts
       -
         name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v7
         with:
           go-version: ${{ inputs.GO_VERSION }}
       -
         name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - 
         name: golangci-lint
-        uses: golangci/golangci-lint-action@v8
+        uses: golangci/golangci-lint-action@v9
         with:
           version: latest
           working-directory: plugins/${{ inputs.LOWER_NAME }}
@@ -59,7 +59,7 @@ jobs:
         run: cd plugins/${{ inputs.LOWER_NAME }} && echo "$(make load-checker)" >> $GITHUB_ENV
       -
         name: Check if the configuration is loaded to define if Souin is loaded too
-        uses: nick-invision/assert-action@v1
+        uses: nick-invision/assert-action@v4
         with:
           expected: 'Souin configuration is now loaded.'
           actual: ${{ env.MIDDLEWARE_RESULT }}

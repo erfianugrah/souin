@@ -14,7 +14,7 @@ jobs:
     steps:
       -
         name: Create Beego tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -25,7 +25,7 @@ jobs:
             })
       -
         name: Create Caddy tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -36,7 +36,7 @@ jobs:
             })
       -
         name: Create Chi tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -47,7 +47,7 @@ jobs:
             })
       -
         name: Create Dotweb tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -58,7 +58,7 @@ jobs:
             })
       -
         name: Create Echo tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -69,7 +69,7 @@ jobs:
             })
       -
         name: Create Fiber tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -80,7 +80,7 @@ jobs:
             })
       -
         name: Create Gin tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -91,7 +91,7 @@ jobs:
             })
       -
         name: Create Go-zero tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -102,7 +102,7 @@ jobs:
             })
       -
         name: Create Goa tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -113,7 +113,7 @@ jobs:
             })
       -
         name: Create Goyave tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -124,7 +124,7 @@ jobs:
             })
       -
         name: Create Hertz tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -135,7 +135,7 @@ jobs:
             })
       -
         name: Create Kratos tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -146,7 +146,7 @@ jobs:
             })
       -
         name: Create Roadrunner tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -157,7 +157,7 @@ jobs:
             })
       -
         name: Create Skipper tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -168,7 +168,7 @@ jobs:
             })
       -
         name: Create Souin tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -179,7 +179,7 @@ jobs:
             })
       -
         name: Create Souin/storages tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -190,7 +190,7 @@ jobs:
             })
       -
         name: Create Traefik tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -201,7 +201,7 @@ jobs:
             })
       -
         name: Create Tyk tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
@@ -212,7 +212,7 @@ jobs:
             })
       -
         name: Create Webgo tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.git.createRef({
